@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en-us">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width,user-scalable=no">
+    <title>Operation: Shuriken</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <canvas id="canvas"></canvas>
+    <div id="spinner" class="pending"></div>
+    <script>
+      // Resume audio context on first user interaction
+      function resumeAudio() {
+        var context = (window.AudioContext || window.webkitAudioContext);
+        if (context) {
+          var dummy = new context();
+          dummy.resume();
+        }
+        document.removeEventListener('mousedown', resumeAudio);
+        document.removeEventListener('touchstart', resumeAudio);
+        document.removeEventListener('keydown', resumeAudio);
+      }
+      document.addEventListener('mousedown', resumeAudio);
+      document.addEventListener('touchstart', resumeAudio);
+      document.addEventListener('keydown', resumeAudio);
+    </script>
+    <script src="player.js?g=game.love&v=11.5&c=1"></script>
+  </body>
+</html>
